@@ -9,7 +9,7 @@ $(function() { // jQuery ready => start up
             desc = t.childs['dmx.repository.description'].value,
             status = t.childs['dmx.repository.status'],
             $row = $('<tr>');
-        if (status && status === 'dmx.repository.status.installed') {
+        if (status && status.uri === 'dmx.repository.status.installed') {
           $row.append($('<td>').append($('<a>').text(name).attr('href', '/dmx/application/' + name)));
           $row.append($('<td>').text(desc));
           $row.append($('<td>').append($('<a>').text('update').attr('href', '/dmx/repository/' + name + '/pull')));
