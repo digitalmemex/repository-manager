@@ -1,0 +1,22 @@
+<h3>Repository Manager</h3>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tr  ng-repeat="repo in repositories"> 
+      <td>{{repo.value}}</td>
+      <td></td>
+      <td></td>
+      <td><button type="button" class="btn btn-sm btn-info" ng-href="#">Install</button></td>
+      <td><button type="button" class="btn btn-sm btn-success" ng-href="#">Open app</button></td>
+    </tr>
+  </table>
+</div>
+
