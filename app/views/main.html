@@ -14,8 +14,8 @@
       <td>{{repo.value}}</td>
       <td></td>
       <td></td>
-      <td><button type="button" class="btn btn-sm btn-info" ng-href="#">Install</button></td>
-      <td><button type="button" class="btn btn-sm btn-success" ng-href="#">Open app</button></td>
+      <td><a type="button" class="btn btn-sm btn-info" ng-href="/dmx/repository/{{repo.value}}/pull">Install</a></td>
+      <td><a type="button" class="btn btn-sm btn-success" ng-href="/dmx/application/{{repo.value}}">Open app</a></td>
     </tr>
   </table>
 </div>
