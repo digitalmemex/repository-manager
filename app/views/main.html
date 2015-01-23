@@ -1,0 +1,23 @@
+<h3>Repository Manager</h3>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tr  ng-repeat="repo in repositories"> 
+      <td>{{repo.value}}</td>
+      <td>{{repo.childs["dmx.repository.description"].value}}</td>
+      <td></td>
+      <td><a type="button" class="btn btn-sm btn-info" ng-href="{{repo.childs['dmx.repository.uri'].value}}/blob/master/README.md">README</a></td>
+      <td><a type="button" class="btn btn-sm btn-primary" ng-href="/dmx/repository/{{repo.value}}/pull">Update</a></td>
+      <td><a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.value}}">Open app</a></td>
+    </tr>
+  </table>
+</div>
+
