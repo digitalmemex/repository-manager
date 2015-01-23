@@ -14,8 +14,9 @@
       <td>{{repo.value}}</td>
       <td>{{repo.childs["dmx.repository.description"].value}}</td>
       <td></td>
-      <td><a type="button" class="btn btn-sm btn-info" ng-href="/dmx/repository/{{repo.value}}/pull">Install</a></td>
-      <td><a type="button" class="btn btn-sm btn-success" ng-href="/dmx/application/{{repo.value}}">Open app</a></td>
+      <td><a type="button" class="btn btn-sm btn-info" ng-href="{{repo.childs['dmx.repository.uri'].value}}/blob/master/README.md">README</a></td>
+      <td><a type="button" class="btn btn-sm btn-primary" ng-href="/dmx/repository/{{repo.value}}/pull">Update</a></td>
+      <td><a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.value}}">Open app</a></td>
     </tr>
   </table>
 </div>
