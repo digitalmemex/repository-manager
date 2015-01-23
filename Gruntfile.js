@@ -78,9 +78,9 @@ module.exports = function (grunt) {
             return [
               connect.static('.tmp'),
               connect().use(
-//                '/filerepo/dmx/cgc-dashboard/bower_components',
+//                '/filerepo/dmx/repository-manager/bower_components',
                   '.bower_components',
-//                connect.static('/filerepo/dmx/cgc-dashboard/bower_components')
+//                connect.static('/filerepo/dmx/repository-manager/bower_components')
                 connect.static('.bower_components')
               ),
               connect.static(appConfig.app)
@@ -97,7 +97,7 @@ module.exports = function (grunt) {
               connect.static('test'),
               connect().use(
                 '/bower_components',
-                connect.static('/filerepo/dmx/cgc-dashboard/bower_components')
+                connect.static('/filerepo/dmx/repository-manager/bower_components')
               ),
               connect.static(appConfig.app)
             ];

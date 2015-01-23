@@ -20,15 +20,15 @@ var app = angular
 app.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '/filerepo/dmx/cgc-dashboard/app/views/main.html',
+        templateUrl: '/filerepo/dmx/repository-manager/app/views/main.html',
         controller: 'MainCtrl'
       })
       .when('/about', {
-        templateUrl: '/filerepo/dmx/cgc-dashboard/app/views/about.html',
+        templateUrl: '/filerepo/dmx/repository-manager/app/views/about.html',
         controller: 'AboutCtrl'
       })
       .when('/contribute', {
-        templateUrl: '/filerepo/dmx/cgc-dashboard/app/views/contribute.html',
+        templateUrl: '/filerepo/dmx/repository-manager/app/views/contribute.html',
         controller: 'ContributeCtrl'
       })
       .otherwise({
