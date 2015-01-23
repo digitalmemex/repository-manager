@@ -12,7 +12,7 @@
     </thead>
     <tr  ng-repeat="repo in repositories"> 
       <td>{{repo.value}}</td>
-      <td></td>
+      <td>{{repo.childs["dmx.repository.description"].value}}</td>
       <td></td>
       <td><a type="button" class="btn btn-sm btn-info" ng-href="/dmx/repository/{{repo.value}}/pull">Install</a></td>
       <td><a type="button" class="btn btn-sm btn-success" ng-href="/dmx/application/{{repo.value}}">Open app</a></td>
