@@ -10,13 +10,17 @@
         <th></th>
       </tr>
     </thead>
-    <tr  ng-repeat="repo in repositories"> 
-      <td>{{repo.value}}</td>
-      <td>{{repo.childs["dmx.repository.description"].value}}</td>
+    <tr  ng-repeat="repo in allRepos"> 
+      <td>{{repo.name}}</td>
+      <td>{{repo.description}}</td>
       <td></td>
-      <td><a type="button" class="btn btn-sm btn-info" ng-href="{{repo.childs['dmx.repository.uri'].value}}/blob/master/README.md">README</a></td>
-      <td><a type="button" class="btn btn-sm btn-primary" ng-href="/dmx/repository/{{repo.value}}/pull">Update</a></td>
-      <td><a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.value}}">Open app</a></td>
+      <td><a type="button" class="btn btn-sm btn-info" ng-href="{{repo.url}}/blob/master/README.md">README</a></td>
+      <td><a  
+             ng-class="{'btn btn-sm btn-warning': repo.status=='Install', 'btn btn-sm btn-primary': repo.status=='Update'}"
+             ng-href="{{url}}" target="_blank"  
+             ng-click="selectAction(repo)">
+          {{repo.status}}</a></td>
+      <td><a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.name}}">Open app</a></td>
     </tr>
   </table>
 </div>
