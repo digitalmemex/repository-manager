@@ -40,12 +40,12 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
     $scope.selectAction = function(repo) {
         if (repo.status === "Install") {
             $scope.url = "/dmx/repository/"+ repo.name + "/clone" ;
-            Notification.success('Repository app created');
+            Notification.success('App installed');
             console.log("Created");
         } else {
             $scope.url = "/dmx/repository/"+ repo.name + "/pull" ;
             console.log("Updated");
-            Notification.info('Repository app updated');
+            Notification.info('App updated');
         }
     };
   
