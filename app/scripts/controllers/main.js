@@ -27,7 +27,8 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
             $scope.allRepos[repo.value]["name"] = repo.value;
             $scope.allRepos[repo.value]["description"] = repo.childs['dmx.repository.description'].value;
             $scope.allRepos[repo.value]["url"] = repo.childs['dmx.repository.uri'].value;
-            if (angular.isUndefined(repo.childs['dmx.repository.status'])) {
+            if (angular.isUndefined(repo.childs['dmx.repository.status'])
+              || repo.childs['dmx.repository.status'].uri === 'dmx.repository.status.configured') {
                 $scope.allRepos[repo.value]["status"] = "Install";
             } else {
                 $scope.allRepos[repo.value]["status"] = "Update";
