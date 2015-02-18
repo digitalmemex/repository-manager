@@ -17,10 +17,11 @@
       <td><a type="button" class="btn btn-sm btn-info" ng-href="{{repo.url}}/blob/master/README.md">README</a></td>
       <td><a  
              ng-class="{'btn btn-sm btn-warning': repo.status=='Install', 'btn btn-sm btn-primary': repo.status=='Update'}"
-             ng-href="{{url}}" target="_blank"  
+
              ng-click="selectAction(repo)">
           {{repo.status}}</a></td>
       <td><a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.name}}">Open app</a></td>
+      <td><a type="button" class="btn btn-sm btn-danger" ng-href="/dmx/repository/{{repo.name}}/delete">Delete app</a></td>
     </tr>
   </table>
 </div>

@@ -8,10 +8,9 @@
  * Controller of the repository-manager
  */
 
-app.controller('MainCtrl', function ($scope, mainService) {
+app.controller('MainCtrl', function ($scope, mainService, Notification) {
  
     $scope.allRepos = {};
-    getAllRepositories();
     function getAllRepositories() {
         return mainService.getAllRepositories() 
             .then(function(response) {
@@ -19,6 +18,8 @@ app.controller('MainCtrl', function ($scope, mainService) {
                 return getRepoInfo(repositories);
             });
     };
+
+    getAllRepositories();
 
     function getRepoInfo(repositories) {
         angular.forEach(repositories, function(repo) {
@@ -38,8 +39,12 @@ app.controller('MainCtrl', function ($scope, mainService) {
     $scope.selectAction = function(repo) {
         if (repo.status === "Install") {
             $scope.url = "/dmx/repository/"+ repo.name + "/clone" ;
+            Notification.success('Repository app created');
+            console.log("Created");
         } else {
             $scope.url = "/dmx/repository/"+ repo.name + "/pull" ;
+            console.log("Updated");
+            Notification.info('Repository app updated');
         }
     };
   

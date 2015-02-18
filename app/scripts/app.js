@@ -15,7 +15,8 @@ var app = angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui-notification'  
   ]);
 app.config(function ($routeProvider) {
     $routeProvider
