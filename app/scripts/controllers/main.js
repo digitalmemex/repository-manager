@@ -34,18 +34,26 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
                 $scope.allRepos[repo.value]["status"] = "Update";
             };
         });
+        console.log("all repos", $scope.allRepos)
     };
    
    
     $scope.selectAction = function(repo) {
         if (repo.status === "Install") {
             $scope.url = "/dmx/repository/"+ repo.name + "/clone" ;
-            Notification.success('App installed');
+            mainService.cloneRepository(repo.name)
+                .then(function(response) {
+                    Notification.success('App installed');
+                });
+
             console.log("Created");
         } else {
             $scope.url = "/dmx/repository/"+ repo.name + "/pull" ;
+            mainService.pullRepository(repo.name)
+                .then(function(response) {
+                    Notification.info('App updated');
+                });
             console.log("Updated");
-            Notification.info('App updated');
         }
     };
   
