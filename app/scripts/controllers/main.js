@@ -43,7 +43,7 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
             $scope.url = "/dmx/repository/"+ repo.name + "/clone" ;
             mainService.cloneRepository(repo.name)
                 .then(function(response) {
-                    Notification.success('App installed');
+                    Notification.success({message: 'App installed', delay: 1000});
                 });
 
             console.log("Created");
@@ -51,7 +51,7 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
             $scope.url = "/dmx/repository/"+ repo.name + "/pull" ;
             mainService.pullRepository(repo.name)
                 .then(function(response) {
-                    Notification.info('App updated');
+                    Notification.info({message: 'App updated', delay: 1000});
                 });
             console.log("Updated");
         }
