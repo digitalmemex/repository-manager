@@ -12,16 +12,32 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
  
     $scope.allRepos = {};
     function getAllRepositories() {
-        return mainService.getAllRepositories() 
+        mainService.getAllRepositories()
             .then(function(response) {
                 var repositories = response;
-                return getRepoInfo(repositories);
+                getRepoInfo(repositories)
+                mainService.getRepositoryCatalog()
+                    .then(function (catalog) {
+                        addCatalogInfo(catalog);
+                    })
             });
     };
 
     getAllRepositories();
 
-
+    function addCatalogInfo(catalog) {
+        // merge local repositories and catalog
+        angular.forEach(catalog, function (repo, name) {
+          if ($scope.allRepos[name] === undefined) {
+            console.log('add repo from catalog');
+            $scope.allRepos[name] = [];
+            $scope.allRepos[name]["name"] = name;
+            $scope.allRepos[name]["description"] = repo.description;
+            $scope.allRepos[name]["url"] = repo.url;
+            $scope.allRepos[name]["status"] = "Install";
+          }
+        })
+    }
 
     function getRepoInfo(repositories) {
         angular.forEach(repositories, function(repo) {
@@ -43,15 +59,15 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
    
     $scope.selectAction = function(repo) {
         if (repo.status === "Install") {
+
             $scope.url = "/dmx/repository/"+ repo.name + "/clone" ;
-            mainService.cloneRepository(repo.name)
-                .then(function(response) {
+            mainService.createRepository(repo)
+              .then(function(repoTopic) {
+                mainService.cloneRepository(repo.name)
+                  .then(function(response) {
                     Notification.success({message: 'App installed', delay: 1000});
-                    $scope.$watch('repo.status', true);
-
-                });
-            console.log("Created");
-
+                  });
+              });
         } else {
             $scope.url = "/dmx/repository/"+ repo.name + "/pull" ;
             mainService.pullRepository(repo.name)

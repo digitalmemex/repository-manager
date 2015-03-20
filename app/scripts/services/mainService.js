@@ -8,13 +8,38 @@ app.factory('mainService', function($http){
             .then(getAllRepositoriesData)
             .catch(function(e){
                 console.log('Error retrieving repositories',e);
-                throw e; 
+                throw e;
             });
     };
 
+    repos.getRepositoryCatalog = function() {
+        return $http.get('/filerepo/dmx/repository-manager/catalog.json')
+            .then(getCatalogData)
+            .catch(function(e){
+                console.log('Error retrieving catalog',e);
+                throw e;
+            });
+    };
+
+    function getCatalogData(response) {
+        console.log('catalog in mainService', response);
+        return response.data;
+    }
+
     function getAllRepositoriesData(response) {
-        console.log('Data in mainService', response.data.items);
+        console.log('local repos in mainService', response.data.items);
         return response.data.items;
+    }
+
+    repos.createRepository = function(repo) {
+        return $http.post('/core/topic', {
+          "type_uri": "dmx.repository",
+          "childs": {
+            "dmx.repository.name": repo.name,
+            "dmx.repository.uri": repo.url,
+            "dmx.repository.description": repo.description
+          }
+        });
     }
 
     repos.cloneRepository = function(repo) {

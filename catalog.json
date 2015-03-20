@@ -1,0 +1,18 @@
+{
+  "repository-manager": {
+    "url": "https://github.com/digitalmemex/repository-manager",
+    "description": "DMX Repository Manager UI"
+  },
+  "table-viewer": {
+    "url": "https://github.com/digitalmemex/table-viewer",
+    "description": "Digital MemeX Table Viewer"
+  },
+  "contact-editor": {
+    "url": "https://github.com/digitalmemex/contact-editor",
+    "description": "Digital Memex Contact Editor Frontend"
+  },
+  "type-editor": {
+    "url": "https://github.com/digitalmemex/type-editor",
+    "description": "Digital MemeX Type Editor Frontend"
+  }
+}
