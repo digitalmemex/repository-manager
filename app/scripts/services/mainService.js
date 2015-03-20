@@ -24,7 +24,10 @@ app.factory('mainService', function($http){
     repos.pullRepository = function(repo) {
         return $http.get('/dmx/repository/'+ repo + '/pull') ;
     }
-    
+
+    repos.deleteRepository = function(repoId) {
+        return $http.delete('/core/topic/' + repoId)
+    }
     
     return repos;
     

@@ -21,9 +21,12 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
 
     getAllRepositories();
 
+
+
     function getRepoInfo(repositories) {
         angular.forEach(repositories, function(repo) {
             $scope.allRepos[repo.value] = [];
+            $scope.allRepos[repo.value]["id"] = repo.id;
             $scope.allRepos[repo.value]["name"] = repo.value;
             $scope.allRepos[repo.value]["description"] = repo.childs['dmx.repository.description'].value;
             $scope.allRepos[repo.value]["url"] = repo.childs['dmx.repository.uri'].value;
@@ -44,9 +47,11 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
             mainService.cloneRepository(repo.name)
                 .then(function(response) {
                     Notification.success({message: 'App installed', delay: 1000});
-                });
+                    $scope.$watch('repo.status', true);
 
+                });
             console.log("Created");
+
         } else {
             $scope.url = "/dmx/repository/"+ repo.name + "/pull" ;
             mainService.pullRepository(repo.name)
@@ -54,8 +59,19 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
                     Notification.info({message: 'App updated', delay: 1000});
                 });
             console.log("Updated");
-        }
+        };
+
     };
+
+    $scope.deleteRepo = function(repoId) {
+        mainService.deleteRepository(repoId)
+                .then(function(response) {
+                    Notification.info({message: 'App deleted', delay: 1000});
+                });
+            console.log("Deleted");
+    }
+
+
   
 });
              
