@@ -20,7 +20,7 @@
              ng-class="repo.status=='Update' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-warning'"
              ng-click="selectAction(repo)">
           {{repo.status}}</button></td>
-      <td><a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.name}}" ng-show="repo.status=='Update'">Open app</a></td>
+      <td><a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.name}}" ng-show="repo.status=='Update' && repo.name!='repository-manager'">Open app</a></td>
       <td><button 
              class="btn btn-sm btn-danger"
              ng-show="repo.name!='repository-manager' && repo.status=='Update'"
