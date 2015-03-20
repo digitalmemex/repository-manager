@@ -23,7 +23,7 @@
       <td><a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.name}}" ng-show="repo.status=='Update'">Open app</a></td>
       <td><button 
              class="btn btn-sm btn-danger"
-             ng-show="repo.status=='Update'"
+             ng-show="repo.name!='repository-manager' && repo.status=='Update'"
              ng-click="deleteRepo(repo.id)">Delete</a></td>
     </tr>
   </table>
