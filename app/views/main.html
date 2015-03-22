@@ -6,25 +6,25 @@
       <tr>
         <th>Name</th>
         <th>Description</th>
-        <th></th>
-        <th></th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tr  ng-repeat="repo in allRepos"> 
       <td>{{repo.name}}</td>
       <td>{{repo.description}}</td>
-      <td></td>
-      <td><a class="btn btn-sm btn-info" ng-href="{{repo.url}}/blob/master/README.md">README</a></td>
-      <td><button
+      <td ng-show="repo.processing == true">{{repo.message}}</td>
+      <td ng-show="repo.processing != true">
+          <a class="btn btn-sm btn-info" ng-href="{{repo.url}}/blob/master/README.md">README</a>
+          <button
              ng-model="repo.status"
-             ng-class="repo.status=='Update' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-warning'"
+             ng-class="repo.status=='installed' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-warning'"
              ng-click="selectAction(repo)">
-          {{repo.status}}</button></td>
-      <td><a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.name}}" ng-show="repo.status=='Update' && repo.name!='repository-manager'">Open app</a></td>
-      <td><button 
+          {{repo.status == 'installed' ? 'Update' : 'Install'}}</button>
+          <a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.name}}" ng-show="repo.status=='installed' && repo.name!='repository-manager'">Open app</a>
+          <button
              class="btn btn-sm btn-danger"
-             ng-show="repo.name!='repository-manager' && repo.status=='Update'"
-             ng-click="deleteRepo(repo.id)">Delete</button></td>
+             ng-show="repo.name!='repository-manager' && repo.status=='installed'"
+             ng-click="deleteRepo(repo)">Delete</button></td>
     </tr>
   </table>
 </div>

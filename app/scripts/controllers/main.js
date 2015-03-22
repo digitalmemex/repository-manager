@@ -34,7 +34,7 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
             $scope.allRepos[name]["name"] = name;
             $scope.allRepos[name]["description"] = repo.description;
             $scope.allRepos[name]["url"] = repo.url;
-            $scope.allRepos[name]["status"] = "Install";
+            $scope.allRepos[name]["status"] = "new";
           }
         })
     }
@@ -48,9 +48,9 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
             $scope.allRepos[repo.value]["url"] = repo.childs['dmx.repository.uri'].value;
             if (angular.isUndefined(repo.childs['dmx.repository.status'])
               || repo.childs['dmx.repository.status'].uri === 'dmx.repository.status.configured') {
-                $scope.allRepos[repo.value]["status"] = "Install";
+                $scope.allRepos[repo.value]["status"] = "configured";
             } else {
-                $scope.allRepos[repo.value]["status"] = "Update";
+                $scope.allRepos[repo.value]["status"] = "installed";
             };
         });
         console.log("all repos", $scope.allRepos)
@@ -58,20 +58,36 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
    
    
     $scope.selectAction = function(repo) {
-        if (repo.status === "Install") {
-
-            $scope.url = "/dmx/repository/"+ repo.name + "/clone" ;
+        if (repo.status === "new") {
+            repo.processing = true;
+            repo.message = 'configure new repo ...';
             mainService.createRepository(repo)
-              .then(function(repoTopic) {
+              .then(function(response) {
+                repo.id = response.data.id;
+                repo.status = 'configured';
+                repo.message = 'installing new repo ...';
                 mainService.cloneRepository(repo.name)
                   .then(function(response) {
+                    repo.processing = false;
+                    repo.status = 'installed';
                     Notification.success({message: 'App installed', delay: 1000});
                   });
               });
-        } else {
-            $scope.url = "/dmx/repository/"+ repo.name + "/pull" ;
+        } else if (repo.status === "configured") {
+            repo.processing = true;
+            repo.message = 'installing new repo ...';
+            mainService.cloneRepository(repo.name)
+              .then(function(response) {
+                repo.processing = false;
+                repo.status = 'installed';
+                Notification.success({message: 'App installed', delay: 1000});
+            });
+        } else { // installed
+            repo.processing = true;
+            repo.message = 'updating repo ...';
             mainService.pullRepository(repo.name)
                 .then(function(response) {
+                    repo.processing = false;
                     Notification.info({message: 'App updated', delay: 1000});
                 });
             console.log("Updated");
@@ -79,9 +95,13 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
 
     };
 
-    $scope.deleteRepo = function(repoId) {
-        mainService.deleteRepository(repoId)
+    $scope.deleteRepo = function(repo) {
+        repo.processing = true;
+        repo.message = 'deleting repo ...';
+        mainService.deleteRepository(repo.id)
                 .then(function(response) {
+                    repo.processing = false;
+                    repo.status = "new";
                     Notification.info({message: 'App deleted', delay: 1000});
                 });
             console.log("Deleted");
