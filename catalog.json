@@ -5,14 +5,18 @@
   },
   "table-viewer": {
     "url": "https://github.com/digitalmemex/table-viewer",
-    "description": "Digital MemeX Table Viewer"
+    "description": "DMX  Table Viewer"
   },
   "contact-editor": {
     "url": "https://github.com/digitalmemex/contact-editor",
-    "description": "Digital Memex Contact Editor Frontend"
+    "description": "DMX Contact Editor Frontend"
   },
   "type-editor": {
     "url": "https://github.com/digitalmemex/type-editor",
-    "description": "Digital MemeX Type Editor Frontend"
+    "description": "DMX Type Editor Frontend"
+  },
+  "stableviews": {
+    "url": "https://github.com/mukil/stableviews.git",
+    "description": "An alternate presentation layer for Topicmaps"
   }
 }
