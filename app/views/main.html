@@ -20,7 +20,7 @@
              ng-class="repo.status=='installed' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-warning'"
              ng-click="selectAction(repo)">
           {{repo.status == 'installed' ? 'Update' : 'Install'}}</button>
-          <a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.name}}" ng-show="repo.status=='installed' && repo.name!='repository-manager'">Open app</a>
+          <a type="button" class="btn btn-sm btn-success" ng-href="/app/{{repo.name}}/" ng-show="repo.status=='installed' && repo.name!='repository-manager'">Open app</a>
           <button
              class="btn btn-sm btn-danger"
              ng-show="repo.name!='repository-manager' && repo.status=='installed'"
