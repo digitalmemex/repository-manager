@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the cgcDashboardApp
  */
-app.controller('contributeCtrl', function ($scope) {
+app.controller('ContributeCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

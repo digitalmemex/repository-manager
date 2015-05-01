@@ -8,8 +8,7 @@
  * Controller of the repository-manager
  */
 
-app.controller('MainCtrl', function ($scope, mainService, Notification) {
- 
+app.controller('MainCtrl', function ($scope, $location,  mainService, Notification) {
     $scope.allRepos = {};
     function getAllRepositories() {
         mainService.getAllRepositories()
@@ -29,7 +28,7 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
         // merge local repositories and catalog
         angular.forEach(catalog, function (repo, name) {
           if ($scope.allRepos[name] === undefined) {
-            console.log('add repo from catalog');
+//            console.log('add repo from catalog');
             $scope.allRepos[name] = [];
             $scope.allRepos[name]["name"] = name;
             $scope.allRepos[name]["description"] = repo.description;
@@ -53,7 +52,7 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
                 $scope.allRepos[repo.value]["status"] = "installed";
             };
         });
-        console.log("all repos", $scope.allRepos)
+//        console.log("all repos", $scope.allRepos)
     };
    
    
@@ -90,7 +89,7 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
                     repo.processing = false;
                     Notification.info({message: 'App updated', delay: 1000});
                 });
-            console.log("Updated");
+//            console.log("Updated");
         };
 
     };
@@ -105,9 +104,13 @@ app.controller('MainCtrl', function ($scope, mainService, Notification) {
                     Notification.info({message: 'App deleted', delay: 1000});
                 });
             console.log("Deleted");
-    }
+    };
 
-
-  
+    $scope.isActive = function (viewLocation) {
+        var active = (viewLocation === $location.url());
+        console.log('location path', $location.url())
+        return active;
+    };
+ 
 });
              

@@ -20,22 +20,26 @@ var app = angular
   ]);
 app.config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: '/filerepo/dmx/repository-manager/app/views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: '/filerepo/dmx/repository-manager/app/views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .when('/contribute', {
-        templateUrl: '/filerepo/dmx/repository-manager/app/views/contribute.html',
-        controller: 'ContributeCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+        .when('/', {
+            templateUrl: '/filerepo/dmx/repository-manager/app/views/main.html',
+            controller: 'MainCtrl'
+        })
+        .when('/about', {
+            templateUrl: '/filerepo/dmx/repository-manager/app/views/about.html',
+            controller: 'AboutCtrl'
+        })
+        .when('/contribute', {
+            templateUrl: '/filerepo/dmx/repository-manager/app/views/contribute.html',
+            controller: 'ContributeCtrl'
+        })
+        .when('/migrations', {
+            templateUrl: '/filerepo/dmx/repository-manager/app/views/migrations.html',
+            controller: ''
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+});
 
 app.config(function($httpProvider) {
         $httpProvider.interceptors.push(function ($q){

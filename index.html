@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="cgcDashboardApp">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/filerepo/dmx/repository-manager/app/styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="cgcDashboardApp">
+  <body ng-controller="MainCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -24,11 +24,11 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#/">Repositories</a></li>
-          <li><a ng-href="#">Migrations</a></li>
+          <li ng-class="{active: isActive('/') }"><a ng-href="#/">Repositories</a></li>
+          <li ng-class="{active: isActive('/migrations')}"><a ng-href="#/migrations">Migrations</a></li>
           <li><a ng-href="http://digitalmemex.github.io">Documentation</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#/contribute">Contribute</a></li>
+          <li ng-class="{active: isActive('/about')}"><a  ng-href="#/about">About</a></li>
+          <li ng-class="{active: isActive('/contribute')}"><a ng-href="#/contribute">Contribute</a></li>
           <li><a ng-href="/de.deepamehta.webclient/" target="_blank">Database</a></li>
         </ul>
         <img src="/filerepo/dmx/repository-manager/app/images/logo_150.png" alt="I'm DMX"><br>
